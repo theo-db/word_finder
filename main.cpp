@@ -41,7 +41,7 @@ vector <string> get_words(){
 bool findWord(string word, vector <string> use){
     bool is_found = false;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         if (word == use.at(wn)){
             is_found = true;
         }
@@ -51,11 +51,12 @@ bool findWord(string word, vector <string> use){
 
 vector <string> fromFront(string s, vector <string> use){
     vector <string> found;
-    int length = size(s);
+    int length = s.size();
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size()
+; wn++){
         string word = use.at(wn);
-        if (size(word) >= length){
+        if (word.size() >= length){
             bool not_broken = true;
             int pos;
             for (pos=0; pos<length; pos++){
@@ -78,9 +79,9 @@ vector <string> fromFront(string s, vector <string> use){
 vector <string> fromFrontExact(string s, int length, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string word = use.at(wn);
-        if (size(word) == length){
+        if (word.size() == length){
             bool not_broken = true;
             int pos;
             for (pos=0; pos<length; pos++){
@@ -102,15 +103,15 @@ vector <string> fromFrontExact(string s, int length, vector <string> use){
 
 vector <string> fromBack(string s, vector <string> use){
     vector <string> found;
-    int length = size(s);
+    int length = s.size();
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string word = use.at(wn);
-        if (size(word) >= length){
+        if (word.size() >= length){
             bool not_broken = true;
             int pos;
             for (pos=0; pos<length; pos++){
-                int index = pos - length + size(word);
+                int index = pos - length + word.size();
                 char letter = s[pos];
                 if (isalpha(letter)){
                     if (word[index] != letter){
@@ -129,12 +130,12 @@ vector <string> fromBack(string s, vector <string> use){
 
 vector <string> fromAny(string s, vector <string> use){
     vector <string> found;
-    int length = size(s);
+    int length = s.size();
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string n_word = use.at(wn);
         string word = n_word;
-        while (size(n_word) >= length){
+        while (n_word.size() >= length){
             bool not_broken = true;
             int pos;
             for (pos=0; pos<length; pos++){
@@ -159,10 +160,10 @@ vector <string> fromAny(string s, vector <string> use){
 vector <string> fromAnyExact(string s, int length, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string n_word = use.at(wn);
         string word = n_word;
-        while (size(n_word) == length){
+        while (n_word.size() == length){
             bool not_broken = true;
             int pos;
             for (pos=0; pos<length; pos++){
@@ -187,13 +188,13 @@ vector <string> fromAnyExact(string s, int length, vector <string> use){
 vector <string> usingLetters(string letters, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string word = use.at(wn);
         int ln;
         bool not_broken = true;
         string letters_copy;
         letters_copy.assign(letters);
-        for (ln=0; ln<size(word); ln++){
+        for (ln=0; ln<word.size(); ln++){
             char letter = word[ln];
             int index = letters_copy.find(letter);
             if (index != -1){
@@ -213,13 +214,13 @@ vector <string> usingLetters(string letters, vector <string> use){
 vector <string> includingLetters(string letters, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string word = use.at(wn);
         int ln;
         string letters_copy;
         letters_copy.assign(letters);
-        for (ln=0; ln<size(word); ln++){
-            if (size(letters_copy) > 0){
+        for (ln=0; ln<word.size(); ln++){
+            if (letters_copy.size() > 0){
                 char letter = word[ln];
                 int index = letters_copy.find(letter);
                 if (index != -1){
@@ -237,9 +238,10 @@ vector <string> includingLetters(string letters, vector <string> use){
 vector <string> findLength(int length, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size()
+; wn++){
         string word = use.at(wn);
-        if (size(word) == length){
+        if (word.size() == length){
             found.push_back(word);
         }
     }
@@ -249,11 +251,11 @@ vector <string> findLength(int length, vector <string> use){
 vector <string> withoutLetters(string letters, vector <string> use){
     vector <string> found;
     int wn;
-    for (wn=0; wn<size(use); wn++){
+    for (wn=0; wn<use.size(); wn++){
         string word = use.at(wn);
         int ln;
         bool not_broken = true;
-        for (ln=0; ln<size(letters); ln++){
+        for (ln=0; ln<letters.size(); ln++){
             char letter = letters[ln];
             if (word.find(letter) != -1){
                 not_broken = false;
@@ -301,10 +303,10 @@ int main() {
             cout << "\n";
             result = fromFront(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "fromBack"){
             string s;
@@ -313,10 +315,10 @@ int main() {
             cout << "\n";
             result = fromBack(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "fromFrontLength"){
             string s;
@@ -329,10 +331,10 @@ int main() {
             int len = cast_to_int(length);
             result = fromFrontExact(s, len, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "fromMiddle"){
             string s;
@@ -341,10 +343,10 @@ int main() {
             cout << "\n";
             result = fromAny(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "fromMiddleLength"){
             string s;
@@ -357,10 +359,10 @@ int main() {
             int len = cast_to_int(length);
             result = fromAnyExact(s, len, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "usingLetters"){
             string s;
@@ -369,10 +371,10 @@ int main() {
             cout << "\n";
             result = usingLetters(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "containingLetters"){
             string s;
@@ -381,10 +383,10 @@ int main() {
             cout << "\n";
             result = includingLetters(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "withLength"){
             string length;
@@ -394,10 +396,10 @@ int main() {
             int len = cast_to_int(length);
             result = findLength(len, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "withoutLetters"){
             string s;
@@ -406,10 +408,10 @@ int main() {
             cout << "\n";
             result = withoutLetters(s, use);
             int i;
-            for (i=0; i<size(result); i++){
+            for (i=0; i<result.size(); i++){
                 cout << result.at(i) << endl;
             }
-            cout << endl << size(result) << " results found\n";
+            cout << endl << result.size() << " results found\n";
         }
         else if (action == "save"){
             string slot_s;
@@ -417,7 +419,7 @@ int main() {
             cin >> slot_s;
             cout << "\n";
             int slot = cast_to_int(slot_s);
-            if (slot < size(memory)){
+            if (slot < memory.size()){
                 memory.at(slot) = result;
             }else{
                 cout << "index out of range\n\n";
@@ -429,13 +431,13 @@ int main() {
             cin >> slot_s;
             cout << "\n";
             int slot = cast_to_int(slot_s);
-            if (slot < size(memory)){
+            if (slot < memory.size()){
                 vector <string> contents = memory.at(slot);
                 int i;
-                for (i=0; i<size(contents); i++){
+                for (i=0; i<contents.size(); i++){
                     cout << contents.at(i) << endl;
                 }
-                cout << endl << size(contents) << " results found\n";
+                cout << endl << contents.size() << " results found\n";
             }else{
                 cout << "index out of range\n\n";
             }
@@ -446,7 +448,7 @@ int main() {
             cin >> slot_s;
             cout << "\n";
             int slot = cast_to_int(slot_s);
-            if (slot < size(memory)){
+            if (slot < memory.size()){
                 use = memory.at(slot);
             }else{
                 cout << "index out of range\n\n";
@@ -460,11 +462,5 @@ int main() {
         }
     }
 
-
-
-    //int i;
-    //for (i=0; i<size(found); i++){
-    //    cout << found.at(i) << endl;
-    //}
     return 0;
 }
